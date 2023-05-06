@@ -17,5 +17,5 @@
   }
 3、处理图片
    webpack4通常使用url-loader处理图片，只输出bundle.js一个文件，通过审查页面元素，可以看到图片路径
-   webpack5可以使用内置的Asset Modules模块，不仅输出了bundle.js还输出了图片，通过审查页面元素，可以看到图片路径已经替换为了dist下的图片路径
+   webpack5可以使用内置的Asset Modules模块，type: 'asset/resource'的类型，不仅输出了bundle.js还输出了图片，通过审查页面元素，可以看到图片路径已经替换为了dist下的路径，也就是绝对路径
   
