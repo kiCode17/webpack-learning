@@ -1,7 +1,12 @@
-// 通过 CommonJS 规范导入 CSS 模块
-require('./css/main.css')
+// 通过 ES 规范导入 CSS 和 show方法
+import './css/main.css'
+import show from './js/show.js'
+import icon from './asset/element-ui-icon.png'
 
-// 通过 CommonJS 规范导入 show 函数
-const show = require('./js/show.js');
-// 执行 show 函数
+
+const myIcon = new Image()
+myIcon.src = icon
+document.body.appendChild(myIcon)
+
+
 show('Webpack');

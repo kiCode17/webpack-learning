@@ -19,7 +19,17 @@ module.exports = {
         // 最后，链中的最后一个 loader，返回 webpack 所期望的 JavaScript。
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
-      }
+      },
+      // webpack5中，可以使用内置的Asset Modules处理图片
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/,
+        type: 'asset/resource',
+      },
+      // webpack4之前通常会使用url-loader处理图片
+      // {
+      //   test: /\.(png|svg|jpg|gif)$/,
+      //   use: ['url-loader']
+      // }
     ]
   }
 }
