@@ -1,7 +1,8 @@
-// 操作 DOM 元素，把 content 显示到网页上
-function show(content) {
-  window.document.getElementById('app').innerText = 'Hello,' + content;
-}
+import { appDom } from '../js/const.js'
 
-// 通过 CommonJS 规范导出 show 函数
-module.exports = show;
+// 操作 DOM 元素，把 content 插入到创建的元素上
+export function show(content) {
+  let h1 = window.document.createElement('h1')
+  h1.innerHTML = 'Hello' + content
+  appDom.appendChild(h1)
+}

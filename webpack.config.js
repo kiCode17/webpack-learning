@@ -10,6 +10,9 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
+    // 修改图片默认的地址,不过注意这个属性只能是针对rule中设置的type''asset/resource' | 'asset'类型才生效
+    // images-output为了区分，临时定义的文件名
+    // assetModuleFilename: 'images-output/[name][ext]'
   },
   module: {
     rules: [
@@ -24,12 +27,23 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/,
         type: 'asset/resource',
+        // 配置图片输出的文件
+        generator: {
+          filename: 'images/[name][ext]'
+        }
       },
       // webpack4之前通常会使用url-loader处理图片
       // {
       //   test: /\.(png|svg|jpg|gif)$/,
       //   use: ['url-loader']
       // }
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[name][ext]'
+        }
+      }
     ]
   }
 }
