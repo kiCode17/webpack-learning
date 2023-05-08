@@ -32,3 +32,4 @@
   获取了id为app的元素后，使用innerHtml为它插入内容，在使用appendChild时插入的页面元素没生效
   将内容换为h1标签的形式插入后，appendChild的元素生效。
   做个小记录，之后再深入学习
+5、参考官网对toml、csv等进行打包

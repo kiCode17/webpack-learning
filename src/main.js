@@ -4,8 +4,14 @@ import './asset/fonts/iconfont.css'
 import { appDom } from './js/const.js'
 import { show } from './js/show.js'
 import icon from './asset/images/element-ui-icon.png'
+import notes from './otherFileType/data.csv'
+import toml from './otherFileType/toml.toml'
 
 show('Webpack')
+
+console.log('notes==', notes)
+console.log(toml.title) // TOML Example
+console.log(toml.owner.name) // Tom Preston-Werner
 
 // 添加image元素
 let myImage = new Image()

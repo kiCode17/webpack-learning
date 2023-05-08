@@ -1,6 +1,9 @@
 // node内置模块path
 const path = require('path')
 
+// 使用 自定义 parser 替代特定的 webpack loader，可以将任何 toml、yaml 或 json5 文件作为 JSON 模块导入。
+const toml = require('toml')
+
 
 module.exports = {
   mode: 'development',
@@ -28,6 +31,7 @@ module.exports = {
         test: /\.(png|svg|jpg|jpeg|gif)$/,
         type: 'asset/resource',
         // 配置图片输出的文件
+        // generator的优先级高于output里的优先级
         generator: {
           filename: 'images/[name][ext]'
         }
@@ -37,11 +41,25 @@ module.exports = {
       //   test: /\.(png|svg|jpg|gif)$/,
       //   use: ['url-loader']
       // }
+      // 处理字体图标icon
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: 'asset/resource',
         generator: {
           filename: 'fonts/[name][ext]'
+        }
+      },
+      // 处理csv|tsv文件，主要是自己手动敲一敲，熟悉点
+      {
+        test: /\.(csv|tsv)$/i,
+        use: ['csv-loader']
+      },
+      // 自定义的parse代替loader，toml、yaml、json5等文件都是类似处理
+      {
+        test: /\.toml$/i,
+        type: 'json',
+        parser: {
+          parse: toml.parse
         }
       }
     ]
