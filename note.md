@@ -34,4 +34,6 @@
   做个小记录，之后再深入学习
 5、参考官网对toml、csv等进行打包
 
-hhha
+# 5.23学习记录
+1、释放资源，回退处理，将代码中的数据引入都删除，同时卸载依赖
+ `npm uninstall css-loader csv-loader json5 style-loader toml xml-loader yamljs`
