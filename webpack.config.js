@@ -1,21 +1,29 @@
 // node内置模块path
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 // 使用 自定义 parser 替代特定的 webpack loader，可以将任何 toml、yaml 或 json5 文件作为 JSON 模块导入。
-const toml = require('toml')
+// const toml = require('toml')
 
 
 module.exports = {
   mode: 'development',
   // 入口
-  entry: './src/main.js',
+  // entry: './src/main.js',
+  entry: {
+    input: './src/main.js',
+    print: './src/print.js',
+  },
   // 出口，filename：输出的文件名，path：输出的路径
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    // filename: 'bundle.js',
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist') ,
     // 修改图片默认的地址,不过注意这个属性只能是针对rule中设置的type''asset/resource' | 'asset'类型才生效
     // images-output为了区分，临时定义的文件名
     // assetModuleFilename: 'images-output/[name][ext]'
+    
+    clean: true // 每次构建前清理/dist文件
   },
   module: {
     rules: [
@@ -55,13 +63,18 @@ module.exports = {
         use: ['csv-loader']
       },
       // 自定义的parse代替loader，toml、yaml、json5等文件都是类似处理
-      {
-        test: /\.toml$/i,
-        type: 'json',
-        parser: {
-          parse: toml.parse
-        }
-      }
+      // {
+      //   test: /\.toml$/i,
+      //   type: 'json',
+      //   parser: {
+      //     parse: toml.parse
+      //   }
+      // }
     ]
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: '管理输出'
+    })
+  ]
 }

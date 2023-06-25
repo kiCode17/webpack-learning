@@ -4,14 +4,14 @@ import './asset/fonts/iconfont.css'
 import { appDom } from './js/const.js'
 import { show } from './js/show.js'
 import icon from './asset/images/element-ui-icon.png'
-import notes from './otherFileType/data.csv'
-import toml from './otherFileType/toml.toml'
+import _ from 'lodash'
+// import notes from './otherFileType/data.csv'
+// import toml from './otherFileType/toml.toml'
+import printMe from './print'
+
+document.body.appendChild(appDom)
 
 show('Webpack')
-
-console.log('notes==', notes)
-console.log(toml.title) // TOML Example
-console.log(toml.owner.name) // Tom Preston-Werner
 
 // 添加image元素
 let myImage = new Image()
@@ -27,3 +27,19 @@ appDom.appendChild(myDiv)
 let myI = document.createElement('i')
 myI.className = 'iconfont icon-jichuguanli'
 appDom.appendChild(myI)
+
+function component() {
+  const element = document.createElement('div')
+  const btn = document.createElement('button')
+
+  element.innerHTML = _.join(['Hello', 'webpack'], ' ')
+
+  btn.innerHTML = 'Click me and check the console!'
+  btn.onclick = printMe;
+
+  element.appendChild(btn)
+
+  return element
+}
+
+appDom.appendChild(component())

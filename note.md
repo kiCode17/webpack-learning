@@ -37,3 +37,18 @@
 # 5.23学习记录
 1、释放资源，回退处理，将代码中的数据引入都删除，同时卸载依赖
  `npm uninstall css-loader csv-loader json5 style-loader toml xml-loader yamljs`
+
+# 6.25学习记录
+1、webpack打包多入口配置，动态产生bundle名称，在index.html中引入print.bundle.js文件时，会报export未知错误，这是浏览器不兼容问题导致的，只需要在
+  引入中说明type即可。
+  `<script type="module" src="./dist/print.bundle.js"></script>`
+
+  更改了一个入口起点的名称，甚至添加了一个新的入口，会在构建时重新命名生成的 bundle，但是我们的 index.html 文件仍然引用旧的名称。可以使用 HtmlWebpackPlugin 来解决这个问题。
+2、HtmlWebpackPlugin 还是会默认生成它自己的 index.html 文件。也就是说，它会用新生成的 index.html 文件，替换我们的原有文件。
+  所有的 bundle 会自动添加到 html 中。
+3、输出配置项中的clean可以清理/dist文件，只会看到构建后文件，而没有旧文件。
+    output: {
+      filename: '[name].bundle.js',
+      path: path.resolve(__dirname, 'dist'),
+      clean: true,
+    },
